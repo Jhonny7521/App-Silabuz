@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:proyecto_final_silabuz/screens/home.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -136,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 20,
                     ),
                     TextField(
+                      cursorColor: Colors.white,
                       obscureText: !showPassword,
                       style: const TextStyle(
                         color: Colors.white,
@@ -171,8 +173,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.only(left: 10),
                             child: Icon(
                               showPassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                               color: Colors.white,
                               size: 28,
                             ),
