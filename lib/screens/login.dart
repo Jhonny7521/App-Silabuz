@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:proyecto_final_silabuz/screens/home.dart';
+import 'package:proyecto_final_silabuz/user_provider.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -292,6 +294,16 @@ class _LoginScreenState extends State<LoginScreen> {
   //funcion para verificar credenciales antes de ir al home
   void login(String userEmail, String password) {
     if (userEmail == 'jhonny1210') {
+      String userName = 'Jhonny Anthony Quiliche LLaxa';
+      String userAddress = 'Calle las Begonias';
+      String userPhone = '987654321';
+      String userEmail = 'jhonny1210@gmail.com';
+
+      context.read<UserProvider>().userName = userName;
+      context.read<UserProvider>().userAddress = userAddress;
+      context.read<UserProvider>().userPhone = userPhone;
+      context.read<UserProvider>().userEmail = userEmail;
+
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const HomeScreen()));
     } else {

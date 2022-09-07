@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_silabuz/screens/login.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_final_silabuz/user_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +12,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Provider(
+      create: (_) => UserProvider(
+          userName: 'Anonimo',
+          userAddress: 'Direccion anónima',
+          userPhone: '',
+          userEmail:
+              ''), //Podremos acceder a los valores desde cualquier ubicacion de la app
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const LoginScreen(),
       ),
-      home: const LoginScreen(),
     );
   }
 }
