@@ -88,11 +88,63 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        ImageAndNameWidget(),
-        ProfileDataWidget(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const ImageAndNameWidget(),
+          const ProfileDataWidget(),
+          const AdministrativeData(),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    primary: const Color(0xffcc3162)),
+                child: const Text(
+                  'Actualizar datos',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    primary: const Color(0xffcc3162)),
+                child: const Text(
+                  'Cambiar contraseña',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          )
+        ],
+      ),
     );
   }
 }
@@ -192,7 +244,7 @@ class ProfileDataWidget extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(right: 25),
                 child: Icon(
-                  Icons.phone_android_rounded,
+                  Icons.stay_current_portrait,
                   size: 30,
                   color: Color(0xff004650),
                 ),
@@ -265,6 +317,321 @@ class ProfileDataWidget extends StatelessWidget {
               )
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class AdministrativeData extends StatelessWidget {
+  const AdministrativeData({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
+      child: Column(
+        children: [
+          Row(
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  'Datos Administrativos',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.access_time,
+                  size: 30,
+                  color: Color(0xff004650),
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Condición',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Text(
+                        //context.read<UserProvider>().userPhone ?? 'Valor nulo',
+                        'Full  Time',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.account_balance_rounded,
+                  size: 30,
+                  color: Color(0xff004650),
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Banco Sueldo',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Text(
+                        //context.read<UserProvider>().userEmail ?? 'Valor nulo',
+                        'Banco de Crédito del Perú',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'CAMBIAR BANCO',
+                            style: TextStyle(
+                              color: Color(0xffcc3162),
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          // const SizedBox(
+          //   height: 5,
+          // ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.price_change_outlined,
+                  size: 30,
+                  color: Color(0xff004650),
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Banco Sueldo',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Text(
+                        //context.read<UserProvider>().userEmail ?? 'Valor nulo',
+                        'Banco de Crédito del Perú',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.account_balance_rounded,
+                  size: 30,
+                  color: Color(0xff004650),
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Banco Sueldo',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Text(
+                        //context.read<UserProvider>().userEmail ?? 'Valor nulo',
+                        'Banco de Crédito del Perú',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.price_change_outlined,
+                  size: 30,
+                  color: Color(0xff004650),
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Banco Sueldo',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Text(
+                        //context.read<UserProvider>().userEmail ?? 'Valor nulo',
+                        'Banco de Crédito del Perú',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.business_center_rounded,
+                  size: 30,
+                  color: Color(0xff004650),
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Sistema de Pensión',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Text(
+                        //context.read<UserProvider>().userEmail ?? 'Valor nulo',
+                        'AFP Prima Mixta',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'AFILIACIÓN AFP',
+                            style: TextStyle(
+                              color: Color(0xffcc3162),
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          )
         ],
       ),
     );
