@@ -12,36 +12,35 @@ class AcceptMembership extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text('Tener en cuenta que:'),
-        const SizedBox(height: 30),
-        Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Text(
-                '- Los nuevos afiliados al Sistema Privado de Pensiones deberán ser dados de alta en AFP Integra - Ley 29903 y su reglamento .',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                '- Solo se afiliará al personal que no haya aportado anteriormente a ninguna AFP.',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                'Verificar en el siguiente link si usted ya se encuentra afiliado https : reportedeudas.sbs.gob.pe/ReporteSituacionPrevisional/Afil_Consulta.aspx',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                '- Todas sus aportaciones realizadas a la ONP se pierden cuando se traslada a la AFP.',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-              ),
+        const Text('Tener en cuenta que: \n'),
+        const Text(
+          '- Los nuevos afiliados al Sistema Privado de Pensiones deberán ser dados de alta en AFP Integra - Ley 29903 y su reglamento .',
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+        const Text(
+          '- Solo se afiliará al personal que no haya aportado anteriormente a ninguna AFP.',
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+        RichText(
+          text: const TextSpan(
+            text:
+                'Verificar en el siguiente link si usted ya se encuentra afiliado ',
+            style: TextStyle(
+                color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
+            children: <TextSpan>[
+              TextSpan(
+                  text:
+                      'https:reporte\ndeudas.sbs.gob.pe/ReporteSituacion\nPrevisional/Afil_Consulta.aspx',
+                  style: TextStyle(
+                      color: Color(0xffcc3162),
+                      fontSize: 15,
+                      decoration: TextDecoration.underline))
             ],
           ),
+        ),
+        const Text(
+          '- Todas sus aportaciones realizadas a la ONP se pierden cuando se traslada a la AFP.',
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 30),
         Row(
@@ -60,9 +59,11 @@ class AcceptMembership extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: const Text(
-                'CONFIRMAR',
+                'CONFIRMAR\nAFILIACIÓN',
                 style: TextStyle(
                   color: Color(0xffcc3162),
                   fontSize: 16,

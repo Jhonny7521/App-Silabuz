@@ -142,6 +142,19 @@ class AdministrativeData extends StatelessWidget {
       padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
       child: Column(
         children: [
+          SizedBox(
+            child: Row(children: [
+              const Icon(Icons.arrow_drop_down),
+              const SizedBox(width: 30),
+              Expanded(
+                child: Container(
+                    height: 1, color: const Color.fromRGBO(220, 220, 220, 0.9)),
+              )
+            ]),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           Row(
             children: const [
               Padding(
