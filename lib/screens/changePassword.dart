@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -139,7 +137,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                     showPassword
                                         ? Icons.visibility_off
                                         : Icons.visibility,
-                                    color: Color(0xff004650),
+                                    color: const Color(0xff004650),
                                     size: 28,
                                   ),
                                 ),
@@ -193,7 +191,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                     showPassword
                                         ? Icons.visibility_off
                                         : Icons.visibility,
-                                    color: Color(0xff004650),
+                                    color: const Color(0xff004650),
                                     size: 28,
                                   ),
                                 ),

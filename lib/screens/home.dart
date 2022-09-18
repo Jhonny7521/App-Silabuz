@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-// import 'package:proyecto_final_silabuz/screens/changePassword.dart';
+import 'package:proyecto_final_silabuz/screens/edit_profile.dart';
+import 'package:proyecto_final_silabuz/screens/login.dart';
 import 'package:proyecto_final_silabuz/screens/profile_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_final_silabuz/user_provider.dart';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 // import 'package:proyecto_final_silabuz/user_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,6 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             color: Colors.blue,
           ),
+          Container(
+            color: Colors.blue,
+          ),
+          Container(
+            color: Colors.blue,
+          ),
+          const Menu(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -80,6 +91,50 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {});
         },
         currentIndex: indexPage,
+      ),
+    );
+  }
+}
+
+class Menu extends StatelessWidget {
+  const Menu({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.orange,
+      child: Center(
+        child: Column(
+          children: [
+            Container(
+              width: 100,
+              height: 100,
+              margin: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/user.jpg'),
+                  fit: BoxFit.cover,
+                ),
+                shape: BoxShape.circle,
+              ),
+            ),
+            Text(context.watch<UserProvider>().userName ?? ''),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const EditProfile()));
+                },
+                child: const Text('Editar Perfil')),
+            ElevatedButton(
+                onPressed: () async {
+                  final storage = FlutterSecureStorage();
+                  await storage.delete(key: '__token__');
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => LoginScreen()));
+                },
+                child: const Text('log out'))
+          ],
+        ),
       ),
     );
   }

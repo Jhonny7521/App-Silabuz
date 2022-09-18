@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:proyecto_final_silabuz/screens/home.dart';
 import 'package:proyecto_final_silabuz/user_provider.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 import 'package:provider/provider.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -116,6 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         validationMessages: {
                           ValidationMessage.required: (error) =>
                               'El campo email es requerido',
+                          ValidationMessage.email: (error) =>
+                              'Ingrese un email valido',
                           ValidationMessage.pattern: (error) =>
                               'Ingrese un email correcto',
                         },
@@ -292,17 +297,38 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   //funcion para verificar credenciales antes de ir al home
-  void login(String userEmail, String password) {
-    if (userEmail == 'jhonny1210') {
-      String userName = 'Jhonny Anthony Quiliche LLaxa';
-      String userAddress = 'Calle las Begonias';
-      String userPhone = '987654321';
-      String userEmail = 'jhonny1210@gmail.com';
+  Future<void> login(String userEmail, String password) async {
+    final url = Uri.https('api.escuelajs.co', 'api/v1/auth/login',
+        {'offset': '20', 'limit': '20'});
+    // final response = await http.get(url);
+    final response =
+        await http.post(url, body: {'email': userEmail, 'password': password});
 
-      context.read<UserProvider>().userName = userName;
-      context.read<UserProvider>().userAddress = userAddress;
-      context.read<UserProvider>().userPhone = userPhone;
-      context.read<UserProvider>().userEmail = userEmail;
+    if (response.statusCode == 201) {
+      final result = jsonDecode(response.body);
+      print(result['access_token']);
+      const storage = FlutterSecureStorage();
+      await storage.write(key: '__token__', value: result['access_token']);
+
+      final url2 = Uri.https('api.escuelajs.co', 'api/v1/auth/profile',
+          {'offset': '20', 'limit': '20'});
+      final response2 = await http.get(url2, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${result['access_token']}',
+      });
+
+      final result2 = jsonDecode(response2.body);
+      print('------');
+      print(result2['name']);
+      print(result2['email']);
+      print('------');
+      // ignore: use_build_context_synchronously
+      context.read<UserProvider>().userName = result2['name'];
+      // ignore: use_build_context_synchronously
+      context.read<UserProvider>().userEmail = result2['email'];
+      context.read<UserProvider>().userPhone = '987654321';
+      context.read<UserProvider>().userAddress = 'Calle las Begonias';
 
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const HomeScreen()));
@@ -310,5 +336,23 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('El email o la contraseña son incorrectos')));
     }
+
+    // if (userEmail == 'jhonny1210') {
+    //   String userName = 'Jhonny Anthony Quiliche LLaxa';
+    //   String userAddress = 'Calle las Begonias';
+    //   String userPhone = '987654321';
+    //   String userEmail = 'jhonny1210@gmail.com';
+
+    //   context.read<UserProvider>().userName = userName;
+    //   context.read<UserProvider>().userAddress = userAddress;
+    //   context.read<UserProvider>().userPhone = userPhone;
+    //   context.read<UserProvider>().userEmail = userEmail;
+
+    //   Navigator.push(
+    //       context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+    // } else {
+    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //       content: Text('El email o la contraseña son incorrectos')));
+    // }
   }
 }

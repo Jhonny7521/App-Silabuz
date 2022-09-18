@@ -1,10 +1,19 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_silabuz/screens/login.dart';
 import 'package:provider/provider.dart';
+import 'package:proyecto_final_silabuz/screens/login.dart';
+import 'package:proyecto_final_silabuz/screens/splash_screen.dart';
 import 'package:proyecto_final_silabuz/user_provider.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
   runApp(const MyApp());
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) => const MyApp(), // Wrap your app
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +21,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (_) => UserProvider(
           userName: 'Anonimo',
           userAddress: 'Direccion anónima',
@@ -25,7 +34,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const LoginScreen(),
+        // home: const LoginScreen(),
+        home: const SplashScreenView(),
       ),
     );
   }

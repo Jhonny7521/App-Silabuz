@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:proyecto_final_silabuz/screens/accept_membership.dart';
 import 'package:proyecto_final_silabuz/screens/change_bank.dart';
 import 'package:proyecto_final_silabuz/user_provider.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 
 class ProfileDataWidget extends StatelessWidget {
   const ProfileDataWidget({Key? key}) : super(key: key);

@@ -1,6 +1,4 @@
 import 'package:flutter/Material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AlertChangeBank extends StatefulWidget {
   const AlertChangeBank({Key? key}) : super(key: key);
@@ -81,7 +79,7 @@ class _AlertChangeBankState extends State<AlertChangeBank> {
                 value: value,
                 child: Text(
                   value,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               );
             }).toList(),
